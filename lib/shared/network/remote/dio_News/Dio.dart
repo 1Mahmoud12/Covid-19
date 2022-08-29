@@ -6,7 +6,7 @@ class DioHelper {
 
   static init() {
     dio = Dio(BaseOptions(
-        baseUrl: 'https://student.valuxapps.com/api/',
+        baseUrl: 'https://disease.sh/v3/covid-19/',
         receiveDataWhenStatusError: true,
         headers: {'Content-Type': 'application/json'}));
   }
@@ -15,13 +15,13 @@ class DioHelper {
       {
         required String? url,
       Map<String, dynamic>? query,
-      String lang = 'en',
+      //String lang = 'en',
       String? token}) async {
-    dio.options.headers = {
-      'lang': lang,
-      'Content-Type': 'application/json',
-      'Authorization': token ?? ''
-    };
+    // dio.options.headers = {
+    //   'lang': lang,
+    //   'Content-Type': 'application/json',
+    //   //'Authorization': token ?? ''
+    // };
 
     return await dio.get(
       url!,
