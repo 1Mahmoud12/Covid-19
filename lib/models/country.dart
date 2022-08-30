@@ -1,6 +1,7 @@
 class Country
 {
 
+  dynamic country ;
   dynamic cases ;
   dynamic deaths ;
   dynamic todayDeaths;
@@ -10,6 +11,8 @@ class Country
   dynamic critical ;
   Image? info ;
   Country.fromJson(Map<String,dynamic>json){
+
+    country =json['country'];
     cases =json['cases'];
     deaths =json['deaths'];
     recovered =json['recovered'];

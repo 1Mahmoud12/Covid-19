@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 
+import 'package:covid_19/modules/country.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -54,15 +55,17 @@ import '../styles/color.dart';
           obscureText: passwordEnable,
           decoration: InputDecoration(
               labelText: text,
-              border: const OutlineInputBorder(), //لاحاطه النص
+              border:  OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20)
+              ), //لاحاطه النص
               prefixIcon: Icon(prefix),
               suffixIcon: suffix),
-          onFieldSubmitted: (s){onSubmit!(s);},
+          //onFieldSubmitted: (s){onSubmit!(s);},
           onChanged: (s){onchange!(s);},
-          onTap: (){onTap!();},
+          //onTap: (){onTap!();},
           validator:(s){validate!(s);}
         );
-
+List<Map<dynamic,dynamic>> result=[];
 
 Widget padMe()=>Container(
   color: Colors.grey,
@@ -101,80 +104,60 @@ Color chooseColor(ToastStates state)
 
 }
 
-String token='';
-String uID='';
+Widget clickItem(context, {required Map data,required index,}){
 
-// Widget listItem( model,context,{bool isOldPrice = true})  {
-//
-//   return  Padding(
-//   padding: const EdgeInsets.all(20.0),
-//   child: SizedBox(
-//     height: 120.0,
-//     child: Row(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Stack(
-//           alignment: AlignmentDirectional.bottomStart,
-//           children: [
-//             Image(
-//               image: NetworkImage(model.image),
-//               width: 100.0,
-//               height: 200.0,
-//               fit: BoxFit.cover,),
-//             if (model.discount != 0 && isOldPrice)
-//               Container(
-//                 color: Colors.red,
-//                 padding: const EdgeInsets.symmetric(horizontal: 5.0),
-//                 child: const Text(
-//                   'DISCOUNT',
-//                   style: TextStyle(fontSize: 10, color: Colors.white),
-//                 ),
-//               )
-//           ],
-//         ),
-//         const SizedBox(width: 10.0,),
-//         Expanded(
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 model.name,
-//                 maxLines: 2,
-//                 overflow: TextOverflow.ellipsis,
-//                 style: const TextStyle(height: 1.5),
-//               ),const Spacer(),
-//               Row(
-//                 children: [
-//                   Text(
-//                     model.price.toString(),
-//                     style: const TextStyle(color: Colors.blue),
-//                   ),
-//                   const SizedBox(
-//                     width: 20,
-//                   ),
-//                   if (model.discount!= 0 && isOldPrice)
-//                     Text(
-//                       model.oldPrice.toString(),
-//                       style:
-//                       const TextStyle(decoration: TextDecoration.lineThrough),
-//                     ),
-//                   const Spacer(),
-//                   IconButton(
-//                       onPressed: () {
-//                         ShopCubit.get(context).changeFvaorites(model.id  );
-//                         //print(model.id);
-//                       },
-//                       icon: CircleAvatar(
-//                           backgroundColor: ShopCubit.get(context).favorites![model.id]! ? defaultCoulor:Colors.grey ,
-//                           child:  const Icon(Icons.favorite_border)))
-//                 ],
-//               ),
-//             ],
-//           ),
-//         ),
-//       ],
-//     ),
-//   ),
-// );
-// }
+
+  return InkWell(
+    onTap: ()
+    {
+      navigatereuse(context,  Country(countryName:data['country']));
+    },
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: [
+
+          const SizedBox(height: 15,),
+          Container(
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.deepPurple,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.deepPurple,
+                    child: ClipOval(child: Image(image: NetworkImage(data['countryInfo']['flag']))),
+                  ),
+                  const SizedBox(width: 10,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Text(data['country'],style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white)),
+                      const SizedBox(height: 4,),
+                      Row(
+                        children: [
+                          Text('Cases : ',style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white70)),
+                          const SizedBox(width: 4,),
+                          Text(data['cases'].toString(),style: const TextStyle(fontSize: 17,color: Colors.white70),),
+                        ],
+                      ),
+
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 

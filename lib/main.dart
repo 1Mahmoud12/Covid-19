@@ -24,9 +24,8 @@ const MyApp({Key? key}) : super(key: key);
   Widget build(BuildContext context) {
 
     return BlocProvider(
-      create: (context)=>CovidCubit()..getWorldReport()..getCountries('egypt'),
+      create: (context)=>CovidCubit()..getWorldReport()..getSpecificCountries('egypt')..getAllCountries(),
       child: MaterialApp(
-        title: 'Flutter Demo',
         theme: lightTheme,
         themeMode:ThemeMode.light,
         home: SplashView(),

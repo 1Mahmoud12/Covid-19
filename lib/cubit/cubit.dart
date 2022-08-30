@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../modules/setting.dart';
+import '../shared/components/components.dart';
 
 class CovidCubit extends Cubit<CovidStates>
 {
@@ -24,7 +25,7 @@ class CovidCubit extends Cubit<CovidStates>
 
   List<Widget> screens=[
     const Home(),
-    const Search(),
+     Search(),
     const Setting(),
   ];
 
@@ -47,7 +48,7 @@ class CovidCubit extends Cubit<CovidStates>
       });
   }
   Country? modelCountry;
-  getCountries(String country) {
+  getSpecificCountries(String country) {
     emit(CovidGetCountryLoadingStates());
       DioHelper.getData(url: 'countries/$country')
           .then(( value) {
@@ -58,5 +59,44 @@ class CovidCubit extends Cubit<CovidStates>
           print(error.toString());
       });
   }
+  List<Map<dynamic,dynamic>> allCountries=[];
+  getAllCountries(){
 
+    emit(CovidGetAllCountryLoadingStates());
+     DioHelper.getData(url: 'countries/')
+        .then(( value) {
+      emit(CovidGetAllCountrySuccessStates());
+       value.data.forEach((element){
+         allCountries.add(element);
+
+       });
+       print(allCountries.length);
+     // modelCountry=Country.fromJson(value.data);
+    }).catchError((error){
+      emit(CovidGetAllCountryErrorStates());
+      print(error.toString());
+    });
+  }
+
+  search(context, String search){
+    result=[];
+    int countCorrect=0;
+    for(int j=0;j<CovidCubit.get(context).allCountries.length;j++){
+      countCorrect=0;
+      for(int i=0;i<search.length;i++){
+        if(CovidCubit.get(context).allCountries[j]['country'].length>=search.length) {
+          if (CovidCubit.get(context).allCountries[j]['country'][i].toLowerCase() == search[i].toLowerCase()) {
+            countCorrect++;
+          }
+        }
+      }
+      if(countCorrect==search.length){
+        result.add(CovidCubit.get(context).allCountries[j]);
+      }
+    }
+    emit(CovidSearchSuccessStates());
+    //print(result.length);
+    return result;
+
+  }
 }

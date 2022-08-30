@@ -89,11 +89,11 @@ class Home extends StatelessWidget {
                       const SizedBox(height: 30,),
                     ],
                   ),
-
+                  if(country?.info?.flag!= null)
                   CircleAvatar(
                     radius: 35,
                     backgroundColor: Colors.white10,
-                    child: ClipOval(child: Image(image: NetworkImage(country?.info?.flag??' '),)),
+                    child: ClipOval(child: Image(image: NetworkImage(country!.info!.flag.toString()),)),
                   ),
                 ],
               ),
@@ -252,7 +252,7 @@ class Home extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(child: MaterialButton(onPressed: (){navigatereuse(context, const Search());},color: Colors.black,child: Text('Track Country',style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white),),)),
+                    Expanded(child: MaterialButton(onPressed: (){navigatereuse(context,  Search());},color: Colors.black,child: Text('Track Country',style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.white),),)),
                   ],
                 ),
               )
