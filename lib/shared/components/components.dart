@@ -4,21 +4,23 @@
 import 'package:covid_19/modules/country.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
-import '../styles/color.dart';
+import '../network/styles/color.dart';
+
 
     Widget defaultButton({
       double width=double.infinity,
       double radius=10.0,
       @required String? name,
-      Color background=defaultCoulor,
+      Color background=defaultColor,
       bool isUppercase=true,
       @required Function? function,
     })=>Container(
       width:width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
-        color:defaultCoulor
+        color:defaultColor
       ),
       child: MaterialButton(
         color: background,
@@ -63,16 +65,18 @@ import '../styles/color.dart';
           //onFieldSubmitted: (s){onSubmit!(s);},
           onChanged: (s){onchange!(s);},
           //onTap: (){onTap!();},
-          validator:(s){validate!(s);}
-        );
+        validator: (s) {
+         return validate!(s);
+        });
 List<Map<dynamic,dynamic>> result=[];
+
 
 Widget padMe()=>Container(
   color: Colors.grey,
   height:1 ,
-  width: double.infinity,
+  width: 200,
 );
-void navigatereuse(context,widget)=> Navigator.push(context,
+void navigatorReuse(context,widget)=> Navigator.push(context,
   MaterialPageRoute(
     builder: (context) => widget,
   ),
@@ -81,8 +85,7 @@ void navigatereuse(context,widget)=> Navigator.push(context,
 void navigateAndEnd(context,widget)=> Navigator.pushAndRemoveUntil
   (context,MaterialPageRoute(builder: (context)=>widget),(route) => false,);
 
-    Future<void> showToast({@required String? text,@required ToastStates? state })
-    {
+    Future<void> showToast({@required String? text,@required ToastStates? state }) {
       return Fluttertoast.showToast(
         msg: text!,
         toastLength: Toast.LENGTH_SHORT,
@@ -96,8 +99,7 @@ void navigateAndEnd(context,widget)=> Navigator.pushAndRemoveUntil
 
 enum ToastStates{SUCCESS,WARNING,ERROR}
 
-Color chooseColor(ToastStates state)
-{
+Color chooseColor(ToastStates state) {
   if(state==ToastStates.SUCCESS){return Colors.green;}
   else if(state==ToastStates.WARNING) {return Colors.amber;}
   else  {return Colors.red;}
@@ -110,7 +112,7 @@ Widget clickItem(context, {required Map data,required index,}){
   return InkWell(
     onTap: ()
     {
-      navigatereuse(context,  Country(countryName:data['country']));
+      navigatorReuse(context,  Country(countryData:data));
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -160,4 +162,7 @@ Widget clickItem(context, {required Map data,required index,}){
   );
 }
 
+ convertNumber({int src = 12354689}) {
+    return NumberFormat.decimalPattern().format(src);
+}
 

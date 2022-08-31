@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'color.dart';
 
 ThemeData lightTheme = ThemeData(
-    primarySwatch: defaultCoulor,
+    primarySwatch: defaultColor,
     floatingActionButtonTheme:
         const FloatingActionButtonThemeData(backgroundColor: Colors.orangeAccent),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -29,14 +29,14 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-    primarySwatch: defaultCoulor,
+    primarySwatch: defaultColor,
     floatingActionButtonTheme:
-        const FloatingActionButtonThemeData(backgroundColor: defaultCoulor),
+        const FloatingActionButtonThemeData(backgroundColor: defaultColor),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[900],
       elevation: 50.0,
       unselectedItemColor: Colors.white,
-      selectedItemColor: defaultCoulor,
+      selectedItemColor: defaultColor,
       type:
           BottomNavigationBarType.fixed, //مهم جداااااااااااااااااااااااااااااا
     ),

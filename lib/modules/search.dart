@@ -1,4 +1,6 @@
 
+// ignore_for_file: must_be_immutable
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:covid_19/cubit/states.dart';
 import 'package:covid_19/shared/components/components.dart';
@@ -17,7 +19,7 @@ class Search extends StatelessWidget {
       listener: (context,state){},
       builder: (context,state) {
         return Scaffold(
-          appBar: AppBar(title: Text('Search'),),
+          appBar: AppBar(title: const Text('Search'),),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -32,7 +34,6 @@ class Search extends StatelessWidget {
                       onchange: (s){
 
                         CovidCubit.get(context).search(context, s);
-                        print(searchController.text);
                       },
                       prefix: Icons.search),
                 ),

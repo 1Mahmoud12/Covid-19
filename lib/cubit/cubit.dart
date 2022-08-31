@@ -44,9 +44,11 @@ class CovidCubit extends Cubit<CovidStates>
             model=AllCases.fromJson(value.data);
       }).catchError((error){
           emit(CovidGetAllCasesErrorStates());
-          print(error.toString());
+          //print(error.toString());
       });
   }
+
+
   Country? modelCountry;
   getSpecificCountries(String country) {
     emit(CovidGetCountryLoadingStates());
@@ -56,9 +58,12 @@ class CovidCubit extends Cubit<CovidStates>
             modelCountry=Country.fromJson(value.data);
       }).catchError((error){
           emit(CovidGetCountryErrorStates());
-          print(error.toString());
+          //print(error.toString());
       });
   }
+
+
+
   List<Map<dynamic,dynamic>> allCountries=[];
   getAllCountries(){
 
@@ -70,11 +75,11 @@ class CovidCubit extends Cubit<CovidStates>
          allCountries.add(element);
 
        });
-       print(allCountries.length);
+       //print(allCountries.length);
      // modelCountry=Country.fromJson(value.data);
     }).catchError((error){
       emit(CovidGetAllCountryErrorStates());
-      print(error.toString());
+      //print(error.toString());
     });
   }
 

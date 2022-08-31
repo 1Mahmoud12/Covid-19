@@ -3,7 +3,7 @@ import 'package:covid_19/cubit/cubit.dart';
 import 'package:covid_19/modules/splash_view.dart';
 import 'package:covid_19/shared/MyBlocObserver.dart';
 import 'package:covid_19/shared/network/remote/dio_News/Dio.dart';
-import 'package:covid_19/shared/styles/themes.dart';
+import 'package:covid_19/shared/network/styles/themes.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
