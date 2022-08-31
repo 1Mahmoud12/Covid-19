@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_color_generator/material_color_generator.dart';
 
 import 'color.dart';
 
 ThemeData lightTheme = ThemeData(
-    primarySwatch: defaultColor,
+    primarySwatch: generateMaterialColor(color: defaultColor),
     floatingActionButtonTheme:
         const FloatingActionButtonThemeData(backgroundColor: Colors.orangeAccent),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -29,9 +30,9 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
-    primarySwatch: defaultColor,
+    primarySwatch: defaultColor as MaterialColor,
     floatingActionButtonTheme:
-        const FloatingActionButtonThemeData(backgroundColor: defaultColor),
+        const FloatingActionButtonThemeData(backgroundColor:defaultColor),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Colors.grey[900],
       elevation: 50.0,

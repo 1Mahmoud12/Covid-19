@@ -17,8 +17,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
 
-     t=Timer(const Duration(seconds: 1), () {
-      print(5);
+     t=Timer(const Duration(seconds:4), () {
+      //print(5);
       navigateAndEnd(context, HomeLayout());
     });
 

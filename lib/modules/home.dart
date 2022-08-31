@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
         appBar: AppBar(),
         backgroundColor: Colors.white10,
         body: ConditionalBuilder(
-          condition: country!= null,
+          condition: country!= null && CovidCubit.get(context).model!=null,
           builder: (context)=> SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

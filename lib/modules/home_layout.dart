@@ -15,6 +15,11 @@ class HomeLayout extends StatelessWidget {
       builder:(context,state)=> Scaffold(
         body: cubit.screens[cubit.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: false,
+           // elevation: 10,
+            backgroundColor: Colors.grey,
+            selectedItemColor: Colors.brown,
+            unselectedItemColor: Colors.red,
             items: cubit.itemsApp,
           currentIndex: cubit.currentIndex,
           onTap: (index){

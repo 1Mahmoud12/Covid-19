@@ -124,7 +124,7 @@ Widget clickItem(context, {required Map data,required index,}){
 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.deepPurple,
+              color: defaultSearch,
             ),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -132,8 +132,7 @@ Widget clickItem(context, {required Map data,required index,}){
                 children: [
                   CircleAvatar(
                     radius: 25,
-                    backgroundColor: Colors.deepPurple,
-                    child: ClipOval(child: Image(image: NetworkImage(data['countryInfo']['flag']))),
+                    child: ClipOval(child: Image(fit: BoxFit.cover,width:50,height:50,image: NetworkImage(data['countryInfo']['flag']))),
                   ),
                   const SizedBox(width: 10,),
                   Column(
